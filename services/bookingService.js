@@ -14,12 +14,12 @@ const createBooking = async({passengerId , source , destination}) => {
         source,
         destination,
         fare,
-        status : pending,
+        status : 'pending',
         distance
 
     }
 
-    const booking = bookingRepository.createBooking(bookingData);
+    const booking = await bookingRepository.createBooking(bookingData);
     return booking;
 }
 

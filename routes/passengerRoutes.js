@@ -15,7 +15,7 @@ const authMiddleware = require('../middlewares/authMiddleware')
 const router = express.Router();
 
 
-router.post('/ride' ,  createBooking);
+router.post('/ride' , authMiddleware,  createBooking);
 
 module.exports = router;
 

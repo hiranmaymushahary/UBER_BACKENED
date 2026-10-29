@@ -10,11 +10,13 @@ const createBooking = async(req , res) => {
 
        const booking= await bookingService.createBooking({passengerId : req.user._id , source , destination})
 
+
         // find nearby driver > redisdb
 
         // notify narby drivers
+        res.status(201).send({data : booking , success : true , error : null , message : "Succesfully created the booking"});
     } catch (error) {
-        
+        res.status(400).send(error.message)
     }
 }
 
