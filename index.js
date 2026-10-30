@@ -16,6 +16,7 @@ const cors = require('cors');
 const { connectDB } = require('./utils/db');
 const authRoutes = require('./routes/authRoutes');
 const passengerRoutes = require('./routes/passengerRoutes');
+const driverRoutes = require('./routes/driverRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -28,6 +29,7 @@ app.use(express.json());
 // --- routes ---
 app.use('/api/auth', authRoutes);
 app.use('/api/passenger' , passengerRoutes);
+app.use('/api/driver' , driverRoutes );
 
 // 404 Handler
 app.use((req, res) => res.status(404).json({ error: 'Not found' }));
