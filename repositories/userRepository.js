@@ -17,4 +17,8 @@ async function findByEmail(email) {
     return User.findOne({ email });
 }
 
-module.exports = { create, findByEmail };
+const updateLocation = async(userId , location) => {
+    return User.findByIdAndUpdate(userId , { location }, { new : true });
+}
+
+module.exports = { create, findByEmail, updateLocation };

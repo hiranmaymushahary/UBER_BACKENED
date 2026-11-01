@@ -6,8 +6,13 @@ const updateLocation = async(driverId , {latitude , longitude}) => {
     const lon = parseFloat(longitude);
 
     try {
+        // update driver location in redis
         const res = await locationService.addDriverLocation(driverId , lat , lon);
-        // update driver location to redis
+        // update driver location in mongo
+        await userRepository.updateLocation(driverId , {
+            type : 'Point',
+            coordinates : [lon , lat]
+        });
     } catch (error) {
 
         console.log(error);
