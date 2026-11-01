@@ -12,6 +12,10 @@ const createBooking = async(req , res) => {
 
 
         // find nearby driver > redisdb
+        const driverIds = [];
+
+        const nearbyDrivers = await bookingService.findNearbyDrivers(source , destination);
+        console.log(nearbyDrivers);
 
         // notify narby drivers
         res.status(201).send({data : booking , success : true , error : null , message : "Succesfully created the booking"});

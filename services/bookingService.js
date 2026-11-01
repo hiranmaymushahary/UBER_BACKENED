@@ -23,4 +23,16 @@ const createBooking = async({passengerId , source , destination}) => {
     return booking;
 }
 
-module.exports = {createBooking};
+const findNearbyDrivers = async(location , radius = 5) => {
+
+    const longitude = parseFloat(location.longitude);
+    const latitude = parseFloat(location.latitude);
+
+    const radiusKm = parseFloat(radius);
+
+    const nearbyDrivers = await locationService.findNearbyDrivers(longitude , latitude , radiusKm);
+    return nearbyDrivers;
+
+}
+
+module.exports = {createBooking, findNearbyDrivers};
