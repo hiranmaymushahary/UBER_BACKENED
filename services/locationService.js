@@ -8,8 +8,8 @@ class locationService {
             await redisClient.sendCommand([
                 'GEOADD',
                 'drivers',
-                latitude.toString(),
                 longitude.toString(),
+                latitude.toString(),
                 driverId.toString(),
 
             ])
@@ -46,6 +46,18 @@ class locationService {
             await redisClient.del(`driver:${driverId}`);
             await redisClient.del(`socket:${socketId}`);
         }
+    }
+
+    async storeNotifiedDrivers(bookingId, driverIds) {
+        for (const driverId of driverIds) {
+            const addedCount = await redisClient.sAdd(`notifiedDrivers:${bookingId}`, driverId);
+            console.log(`Added driver ${driverId} to the set for booking ${bookingId}, result: ${addedCount}`);
+        }
+    }
+
+    async getNotifiedDrivers(bookingId) {
+        const nearbyDrivers = await redisClient.sMembers(`notifiedDrivers:${bookingId}`);
+        return nearbyDrivers;
     }
 }
 
