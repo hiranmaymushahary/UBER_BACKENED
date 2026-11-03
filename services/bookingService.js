@@ -1,3 +1,4 @@
+const locationService = require('./locationService');
 const bookingRepository = require('../repositories/bookingRepository');
 const { haversineDistance} = require('../utils/distance');
 

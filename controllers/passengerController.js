@@ -14,7 +14,7 @@ const createBooking = async(req , res) => {
         // find nearby driver > redisdb
         const driverIds = [];
 
-        const nearbyDrivers = await bookingService.findNearbyDrivers(source , destination);
+        const nearbyDrivers = await bookingService.findNearbyDrivers(source , 5);
         console.log(nearbyDrivers);
 
         // notify narby drivers
